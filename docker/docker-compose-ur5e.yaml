@@ -1,0 +1,16 @@
+# version: "3.9"
+
+################################################################################
+
+# Universal Robots UR5e platform overlay for OpenRoSDE.
+# Passes UR5e-specific environment variables to the container.
+
+################################################################################
+
+services:
+  openrosde:
+    environment:
+      # ROS package that holds the robot description, the SRDF, and the calibration of the UR5e.
+      - OPENROSDE_UR5E_DESCRIPTION_PACKAGE=${OPENROSDE_UR5E_DESCRIPTION_PACKAGE}
+      # IP address of the Universal Robots UR5e Teach Pendant.
+      - OPENROSDE_UR5E_TEACH_PENDANT_IP=${OPENROSDE_UR5E_TEACH_PENDANT_IP}

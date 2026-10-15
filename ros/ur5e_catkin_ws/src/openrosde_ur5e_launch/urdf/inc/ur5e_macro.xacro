@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- The plain Universal Robots UR5e of OpenRoSDE, fixed to 'world', with no device mounted on its flange. -->
+  <!-- 'ur_robot' describes the real robot, and 'ur_robot_gazebo' wraps it for Gazebo. -->
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur_macro.xacro"/>
+  <xacro:include filename="$(find ur_gazebo)/urdf/ur_macro.xacro"/>
+
+  <!-- 'environment' is 'gazebo' for 'ur_robot_gazebo' or 'realworld' for 'ur_robot'. -->
+  <!-- A setup calls this macro from its own 'urdf/ur5e_<environment>.xacro', then mounts its devices on 'tool0' or 'world'. -->
+  <xacro:macro name="openrosde_ur5e" params="
+    environment
+    joint_limits_parameters_file
+    kinematics_parameters_file
+    physical_parameters_file
+    visual_parameters_file
+    transmission_hw_interface
+    safety_limits:=false
+    safety_pos_margin:=0.15
+    safety_k_position:=20">
+
+    <xacro:if value="${environment == 'gazebo'}">
+      <xacro:ur_robot_gazebo
+        prefix=""
+        joint_limits_parameters_file="${joint_limits_parameters_file}"
+        kinematics_parameters_file="${kinematics_parameters_file}"
+        physical_parameters_file="${physical_parameters_file}"
+        visual_parameters_file="${visual_parameters_file}"
+        transmission_hw_interface="${transmission_hw_interface}"
+        safety_limits="${safety_limits}"
+        safety_pos_margin="${safety_pos_margin}"
+        safety_k_position="${safety_k_position}"
+      />
+    </xacro:if>
+
+    <xacro:if value="${environment == 'realworld'}">
+      <xacro:ur_robot
+        prefix=""
+        joint_limits_parameters_file="${joint_limits_parameters_file}"
+        kinematics_parameters_file="${kinematics_parameters_file}"
+        physical_parameters_file="${physical_parameters_file}"
+        visual_parameters_file="${visual_parameters_file}"
+        transmission_hw_interface="${transmission_hw_interface}"
+        safety_limits="${safety_limits}"
+        safety_pos_margin="${safety_pos_margin}"
+        safety_k_position="${safety_k_position}"
+      />
+    </xacro:if>
+
+    <link name="world"/>
+
+    <!-- Robot base is attached to the world (fixed joint). -->
+    <joint name="world_joint" type="fixed">
+      <parent link="world"/>
+      <child link="base_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="tool0_controller"/>
+
+    <joint name="tool_controller_fake_joint" type="fixed">
+      <parent link="tool0"/>
+      <child link="tool0_controller"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

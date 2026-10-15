@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- https://github.com/ros-industrial/universal_robot -->
+  <!-- Upstream default: $(find ur5e_moveit_config)/launch/moveit.rviz -->
+
+  <!-- Resolve the RViz layout in the package that 'OPENROSDE_UR5E_DESCRIPTION_PACKAGE' names, which defaults to 'openrosde_ur5e_launch'. -->
+  <!-- A setup holds its own 'config/rviz/ur5e_rviz_default.rviz' there, with the displays of its devices. -->
+  <arg name="description_package" default="$(eval optenv('OPENROSDE_UR5E_DESCRIPTION_PACKAGE', '') or 'openrosde_ur5e_launch')" />
+  <arg name="rviz_config" default="$(eval find(arg('description_package')) + '/config/rviz/ur5e_rviz_default.rviz')" />
+
+  <!-- Display RViz with a custom layout to monitor the Universal Robots UR5e robot. -->
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+    args="-d $(arg rviz_config)" />
+
+  <!-- Maximize the RViz window after it opens. -->
+  <node name="maximize_rviz" pkg="openrosde_launch" type="maximize-app-window.bash" args="RViz" />
+
+</launch>

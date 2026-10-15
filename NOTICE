@@ -1,0 +1,65 @@
+OpenRoSDE Platform UR5e (openrosde-platform-ur5e)
+Copyright 2019 Coarobo GK
+
+This product includes software developed by Coarobo GK (https://coarobo.com/), licensed under the Apache License, Version 2.0, whose text is the file LICENSE.
+
+Earlier code under the MIT License
+
+The files of this repository were first published in the Software Development Environment (SDE) of Coarobo GK, https://gitlab.com/coarobo/SDE, under the MIT License, whose notice and permission text follow.
+
+MIT License
+
+Copyright (c) 2019 Coarobo GK
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Third-party software
+
+The file `ros/ur5e_catkin_ws/src/openrosde_ur5e_launch/config/ur5e/ur5e_calibration.yaml` is a copy, under a header of comments, of `ur_description/config/ur5e/default_kinematics.yaml` of the package `ur_description` 1.5.0 of ROS-Industrial, https://github.com/ros-industrial/universal_robot (branch `noetic-devel`), licensed under the BSD 3-Clause License of `ur_description/LICENSE`, whose text follows.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+
+   * Neither the name of the copyright holder nor the names of its
+     contributors may be used to endorse or promote products derived from
+     this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+The image `ur5e-devel`, built from `docker/ur5e-devel/Dockerfile`, installs the packages below from the ROS repositories, each under its own license:
+- `ros-noetic-ur-robot-driver` and `ros-noetic-ur-calibration` of the Universal Robots ROS Driver, https://github.com/UniversalRobots/Universal_Robots_ROS_Driver, licensed under the Apache License, Version 2.0, with parts under the BSD 2-Clause and the zlib licenses, as `ur_robot_driver/package.xml` declares.
+- `ros-noetic-universal-robots` of ROS-Industrial, https://github.com/ros-industrial/universal_robot, licensed under the BSD 3-Clause License, apart from the meshes of some robot models, which `ur_description/package.xml` puts under the Terms and Conditions for Use of Graphical Documentation of Universal Robots A/S.
+- `ros-noetic-rqt-joint-trajectory-controller` of `ros_controllers`, https://github.com/ros-controls/ros_controllers, licensed under the BSD License, as its `package.xml` declares.

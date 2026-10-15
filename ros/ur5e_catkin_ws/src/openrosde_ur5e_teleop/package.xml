@@ -1,0 +1,22 @@
+<package format="2">
+  <name>openrosde_ur5e_teleop</name>
+  <version>1.0.0</version>
+  <description>
+    The 'openrosde_ur5e_teleop' package enables teleoperation of a Universal Robots UR5e through MoveIt Servo, which any input device or application of a setup drives.
+  </description>
+  <maintainer email="lotfi@coarobo.com">Lotfi El Hafi</maintainer>
+  <author email="lotfi@coarobo.com">Lotfi El Hafi</author>
+
+  <license>Apache-2.0</license>
+
+  <url type="website">https://coarobo.com/</url>
+  <url type="repository">https://gitlab.com/coarobo/openrosde/openrosde-platform-ur5e</url>
+  <url type="bugtracker">https://gitlab.com/coarobo/openrosde/openrosde-platform-ur5e/-/issues</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>controller_manager_msgs</depend>
+  <depend>rospy</depend>
+
+  <exec_depend>moveit_servo</exec_depend>
+</package>

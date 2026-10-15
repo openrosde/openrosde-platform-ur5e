@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- https://github.com/moveit/moveit/tree/master/moveit_ros/moveit_servo -->
+  <!-- OpenRoSDE-specific launch: starts 'moveit_servo' and the controller switch for UR5e teleop. -->
+  <!-- MoveIt Servo listens for 'geometry_msgs/TwistStamped' commands on '/servo_server/delta_twist_cmds', which an input device or an application of a setup publishes. -->
+
+  <arg name="planning_frame" default="base_link" />
+  <!-- End effector frame the servo commands. -->
+  <arg name="ee_frame_name" default="flange" />
+  <arg name="robot_link_command_frame" default="base_link" />
+  <arg name="controller_mode" default="trajectory" />
+  <arg name="command_out_topic" default="$(eval '/joint_group_vel_controller/command' if arg('controller_mode') == 'velocity' else '/scaled_pos_joint_traj_controller/command')" />
+  <arg name="command_out_type" default="$(eval 'std_msgs/Float64MultiArray' if arg('controller_mode') == 'velocity' else 'trajectory_msgs/JointTrajectory')" />
+  <arg name="publish_joint_positions" default="$(eval 'false' if arg('controller_mode') == 'velocity' else 'true')" />
+  <arg name="publish_joint_velocities" default="$(eval 'true' if arg('controller_mode') == 'velocity' else 'false')" />
+  <arg name="switch_controllers" default="true" />
+  <arg name="switch_service_name" default="/controller_manager/switch_controller" />
+  <arg name="controllers_to_start" default="$(eval 'joint_group_vel_controller' if arg('controller_mode') == 'velocity' else 'scaled_pos_joint_traj_controller')" />
+  <arg name="controllers_to_stop" default="$(eval 'scaled_pos_joint_traj_controller' if arg('controller_mode') == 'velocity' else 'joint_group_vel_controller')" />
+  <arg name="wait_for_switch_service_timeout" default="20.0" />
+
+  <include file="$(find openrosde_ur5e_teleop)/launch/ur5e_moveit_servo_velocity.launch">
+    <arg name="planning_frame" value="$(arg planning_frame)" />
+    <arg name="ee_frame_name" value="$(arg ee_frame_name)" />
+    <arg name="robot_link_command_frame" value="$(arg robot_link_command_frame)" />
+    <arg name="command_out_topic" value="$(arg command_out_topic)" />
+    <arg name="command_out_type" value="$(arg command_out_type)" />
+    <arg name="publish_joint_positions" value="$(arg publish_joint_positions)" />
+    <arg name="publish_joint_velocities" value="$(arg publish_joint_velocities)" />
+    <arg name="switch_controllers" value="$(arg switch_controllers)" />
+    <arg name="switch_service_name" value="$(arg switch_service_name)" />
+    <arg name="controllers_to_start" value="$(arg controllers_to_start)" />
+    <arg name="controllers_to_stop" value="$(arg controllers_to_stop)" />
+    <arg name="wait_for_switch_service_timeout" value="$(arg wait_for_switch_service_timeout)" />
+  </include>
+
+</launch>

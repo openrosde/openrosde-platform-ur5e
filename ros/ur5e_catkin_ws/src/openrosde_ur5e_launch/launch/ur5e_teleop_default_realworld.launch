@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- OpenRoSDE-specific launch: configures teleop for the realworld robot. -->
+  <!-- It starts MoveIt Servo, which listens on '/servo_server/delta_twist_cmds', and switches the controllers of the robot driver for it. -->
+  <!-- An input device or an application publishes 'geometry_msgs/TwistStamped' commands on that topic, as a setup chooses. -->
+
+  <!-- Real-world controller configuration. -->
+  <!-- Trajectory mode is the default because the velocity controller is still experimental on the real robot and needs tuning before it moves smoothly. -->
+  <!-- Velocity mode stays available through 'controller_mode:=velocity' for tuning. -->
+  <arg name="controller_mode" default="trajectory" />
+  <arg name="command_out_topic" default="$(eval '/joint_group_vel_controller/command' if arg('controller_mode') == 'velocity' else '/scaled_pos_joint_traj_controller/command')" />
+  <arg name="switch_controllers" default="true" />
+  <arg name="controllers_to_start" default="$(eval 'joint_group_vel_controller' if arg('controller_mode') == 'velocity' else 'scaled_pos_joint_traj_controller')" />
+  <arg name="controllers_to_stop" default="$(eval 'scaled_pos_joint_traj_controller' if arg('controller_mode') == 'velocity' else 'joint_group_vel_controller')" />
+
+  <!-- Motion frame configuration. -->
+  <arg name="ee_frame_name" default="flange" />
+  <arg name="robot_link_command_frame" default="base_link" />
+
+  <!-- 'pass_all_args' forwards every arg declared above to the teleop stack, so a new parameter only needs to be added in one place. -->
+  <include file="$(find openrosde_ur5e_teleop)/launch/ur5e_teleop.launch" pass_all_args="true" />
+
+</launch>
