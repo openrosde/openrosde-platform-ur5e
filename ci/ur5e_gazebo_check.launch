@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- OpenRoSDE-specific: the plain UR5e in Gazebo without a GUI, with the MoveIt Servo of its teleop, which 'ci/check-gazebo.bash' starts in a container without network, for the CI only. -->
+
+  <!-- Start the UR5e in an empty world of Gazebo, with 'gzserver' alone and no 'gzclient', and its controllers. -->
+  <include file="$(find openrosde_ur5e_launch)/launch/ur5e_bringup_default_gazebo.launch">
+    <arg name="gui" value="false" />
+  </include>
+
+  <!-- Start MoveIt Servo on '/servo_server/delta_twist_cmds', as the panes of the platform do. -->
+  <include file="$(find openrosde_ur5e_launch)/launch/ur5e_teleop_default_gazebo.launch" />
+
+</launch>

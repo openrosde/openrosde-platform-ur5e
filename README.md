@@ -24,15 +24,16 @@ A setup adds its grippers, cameras, and input devices from device extensions, an
 
 ## 📁 Directory Structure
 
-| Path                              | Content                                                                                                            |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `env/ur5e.env`                    | Default setup of the platform, which `bash ./SWITCH-ROBOT-PLATFORM.bash ur5e` copies to `.env.custom` of the core. |
-| `docker/ur5e-devel/Dockerfile`    | Platform image `ur5e-devel`, built on the image `openrosde-base` of the core.                                      |
-| `docker/docker-compose-ur5e.yaml` | Docker Compose overlay of the platform.                                                                            |
-| `ros/ur5e_catkin_ws/`             | Catkin workspace with `openrosde_ur5e_launch`, `openrosde_ur5e_teleop`, and `openrosde_ur5e_behaviors`.            |
-| `tmux/ur5e.panes`                 | Panes of the `tmux` sessions of the platform.                                                                      |
-| `terminator/ur5e.config`          | Terminator layouts of the platform, until `tmux` replaces them.                                                    |
-| `docs/robot-platforms/ur5e.md`    | Documentation of the platform.                                                                                     |
+| Path                              | Content                                                                                                                                        |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `env/ur5e.env`                    | Default setup of the platform, which `bash ./SWITCH-ROBOT-PLATFORM.bash ur5e` copies to `.env.custom` of the core.                             |
+| `docker/ur5e-devel/Dockerfile`    | Platform image `ur5e-devel`, built on the image `openrosde-base` of the core.                                                                  |
+| `docker/docker-compose-ur5e.yaml` | Docker Compose overlay of the platform.                                                                                                        |
+| `ros/ur5e_catkin_ws/`             | Catkin workspace with `openrosde_ur5e_launch`, `openrosde_ur5e_teleop`, and `openrosde_ur5e_behaviors`.                                        |
+| `tmux/ur5e.panes`                 | Panes of the `tmux` sessions of the platform.                                                                                                  |
+| `terminator/ur5e.config`          | Terminator layouts of the platform, until `tmux` replaces them.                                                                                |
+| `docs/robot-platforms/ur5e.md`    | Documentation of the platform.                                                                                                                 |
+| `ci/`                             | Check of the plain UR5e in Gazebo, with its controllers and MoveIt Servo, which the CI of the core runs in the container of the default setup. |
 
 The layout is the one of the core, which the [Extensions](https://gitlab.com/coarobo/SDE/-/blob/dev/docs/extensions.md) guide of OpenRoSDE describes.
 
@@ -98,6 +99,7 @@ Update the platform with `git -C extensions/openrosde-platform-ur5e pull`, then 
 
 The CI of the core of OpenRoSDE tests this platform at the commit that `gitlab-ci/extensions.repos` of the core pins: it builds or reuses the image `registry.gitlab.com/coarobo/sde/ur5e-devel`, builds the Catkin workspaces in it, and checks every launch entry point of the panes.
 It publishes the image as `dev` or `main` from those branches of the core, and under the tag of a release of the core, such as `v3.0.0`.
+In the container of the default setup `ur5e`, cut from every network, `ci/check-in-container.bash` starts the plain UR5e in Gazebo with `gzserver` alone and MoveIt Servo, checks its controllers, switches between two of them, and checks `/joint_states` and MoveIt Servo, which only the simulated arm feels.
 
 `.gitlab-ci.yml` of this repository triggers a pipeline of the core on `dev` for every change, with `OPENROSDE_CI_EXTENSION_OVERRIDE` set to this project, its branch, and its commit, so that the core tests only the setups that run this platform, at that commit, and publishes nothing.
 
