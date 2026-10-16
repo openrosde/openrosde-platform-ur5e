@@ -18,7 +18,7 @@ The platform is the plain Universal Robots UR5e collaborative robot as sold, fix
 - **Network:** the control box connects to the Ubuntu development machine over Ethernet, with a fixed IP address on each side.
 
 Grippers, cameras, and input devices come from device extensions, such as [`openrosde-device-onrobot`](https://github.com/openrosde/openrosde-device-onrobot), [`openrosde-device-realsense`](https://github.com/openrosde/openrosde-device-realsense), and [`openrosde-device-spacenav`](https://github.com/openrosde/openrosde-device-spacenav).
-A setup mounts them in its own robot description and starts their launch files from its own panes, as [Robot Description](#robot-description) and the [Extensions](https://github.com/openrosde/openrosde/blob/dev/docs/extensions.md) guide of OpenRoSDE describe.
+A setup mounts them in its own robot description and starts their launch files from its own panes, as [Robot Description](#-robot-description) and the [Extensions](https://github.com/openrosde/openrosde/blob/dev/docs/extensions.md) guide of OpenRoSDE describe.
 
 ## ⚙️ Platform Configuration
 
@@ -36,7 +36,7 @@ OPENROSDE_UR5E_TEACH_PENDANT_IP=<robot-ip>
 
 > [!NOTE]
 > The Universal Robots UR5e does not broadcast a host name on the network, so it cannot be operated using mDNS host names.
-> Static IP addresses must be used instead (see [Network Configuration](#network-configuration)).
+> Static IP addresses must be used instead (see [Network Configuration](#-network-configuration)).
 > For this reason, `OPENROSDE_ROBOT_HOSTNAME` should be left empty.
 
 ## 🧩 Robot Description
