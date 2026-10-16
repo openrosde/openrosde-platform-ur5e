@@ -11,7 +11,7 @@ MoveIt Servo listens for `geometry_msgs/TwistStamped` commands on `/servo_server
 `ur5e_teleop.launch` is the main entry point.
 It starts MoveIt Servo and performs the controller switch based on `controller_mode`.
 It starts no input bridge, since the input devices belong to a setup.
-A setup starts the bridge of each of its input devices beside this launch file, such as the one of [`openrosde-device-spacenav`](https://gitlab.com/coarobo/openrosde/openrosde-device-spacenav), and each bridge publishes on `/servo_server/delta_twist_cmds`.
+A setup starts the bridge of each of its input devices beside this launch file, such as the one of [`openrosde-device-spacenav`](https://github.com/openrosde/openrosde-device-spacenav), and each bridge publishes on `/servo_server/delta_twist_cmds`.
 Several bridges may publish at once only if each publishes while its input is in use, so whichever input is in use drives MoveIt Servo.
 
 ## Full Teleop Stack

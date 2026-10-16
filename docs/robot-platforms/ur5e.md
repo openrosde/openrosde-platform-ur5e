@@ -17,8 +17,8 @@ The platform is the plain Universal Robots UR5e collaborative robot as sold, fix
 - **Robot arm:** [Universal Robots UR5e](https://www.universal-robots.com/products/ur5e/) collaborative robot, with its control box and teach pendant.
 - **Network:** the control box connects to the Ubuntu development machine over Ethernet, with a fixed IP address on each side.
 
-Grippers, cameras, and input devices come from device extensions, such as [`openrosde-device-onrobot`](https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot), [`openrosde-device-realsense`](https://gitlab.com/coarobo/openrosde/openrosde-device-realsense), and [`openrosde-device-spacenav`](https://gitlab.com/coarobo/openrosde/openrosde-device-spacenav).
-A setup mounts them in its own robot description and starts their launch files from its own panes, as [Robot Description](#robot-description) and the [Extensions](https://gitlab.com/coarobo/SDE/-/blob/dev/docs/extensions.md) guide of OpenRoSDE describe.
+Grippers, cameras, and input devices come from device extensions, such as [`openrosde-device-onrobot`](https://github.com/openrosde/openrosde-device-onrobot), [`openrosde-device-realsense`](https://github.com/openrosde/openrosde-device-realsense), and [`openrosde-device-spacenav`](https://github.com/openrosde/openrosde-device-spacenav).
+A setup mounts them in its own robot description and starts their launch files from its own panes, as [Robot Description](#robot-description) and the [Extensions](https://github.com/openrosde/openrosde/blob/dev/docs/extensions.md) guide of OpenRoSDE describe.
 
 ## ⚙️ Platform Configuration
 
@@ -173,7 +173,7 @@ roslaunch openrosde_ur5e_launch ur5e_teleop_default_realworld.launch
 ```
 
 MoveIt Servo then moves the end effector frame, `flange` by default, along the `geometry_msgs/TwistStamped` commands that arrive on `/servo_server/delta_twist_cmds`.
-The bridge of an input device, such as the one of [`openrosde-device-spacenav`](https://gitlab.com/coarobo/openrosde/openrosde-device-spacenav), or an application publishes these commands, and a setup starts the bridges of its own input devices beside the teleop launch file.
+The bridge of an input device, such as the one of [`openrosde-device-spacenav`](https://github.com/openrosde/openrosde-device-spacenav), or an application publishes these commands, and a setup starts the bridges of its own input devices beside the teleop launch file.
 `controller_mode:=velocity` switches to the experimental velocity path, while the trajectory path stays the default.
 
 ### 🌳 TF Frames
